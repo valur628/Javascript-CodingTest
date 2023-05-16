@@ -1,28 +1,26 @@
 from datetime import datetime
 import os
 
-
 def count_files(directory):
     file_list = os.listdir(directory)
     file_count = len(file_list)
     return file_count
 
-
 def update_readme(file_counts):
-    info = f"### 누적 기록\n"
     total_count = 0
-    for count in file_counts.items():
-        total_count += count
-    info += f"#### 총 합계: {total_count}\n"
+    info = ""
     for directory, count in file_counts.items():
         info += f"- [{directory}]: {count}개 해결\n"
+        total_count += count
+
+    total_info = f"### 누적 기록\n#### 총 합계: {total_count}\n" + info
 
     readme = f"""# Javascript CodingTest
 ### _자바스크립트 코딩테스트_
 # 개요
 >온라인 저지(Online Judge)에서 [Javascript]로 해결 중인 코딩 문제를 업로드 하는 리포지토리.
 # 상세
-{info}
+{total_info}
 ### 사용 환경
 | 종류 | 목록 |
 | ------ | ------ |
@@ -37,7 +35,6 @@ def update_readme(file_counts):
 
     with open("./README.MD", 'w', encoding='utf-8') as f:
         f.write(readme)
-
 
 if __name__ == "__main__":
     directories = ["./Programmers", "./Baekjoon"]
