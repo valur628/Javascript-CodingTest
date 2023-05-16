@@ -28,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
     - name: Run Update Python Script 
       run: |
-        python utils/count_files.py
+        python utils/stats.py
     - name: Run Update README.md File
       run: |
         git add .
