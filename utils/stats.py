@@ -18,20 +18,16 @@ def update_readme(file_counts):
 
     readme = f"""# Javascript CodingTest
 ### _자바스크립트 코딩테스트_
-<br>
 # 개요
 >온라인 저지(Online Judge)에서 [Javascript]로 해결 중인 코딩 문제를 업로드 하는 리포지토리.
-<br>
 # 상세
 {info}
-<br>
 ### 사용 환경
 | 종류 | 목록 |
 | ------ | ------ |
 | 사용 언어 | JavaScript |
 | 개발 도구 | Visual Studio Code |
 | OS 환경 | Windows 10 |
-<br>
    [Javascript]: <https://developer.mozilla.org/ko/docs/Web/JavaScript>
    [Baekjoon]: <https://www.acmicpc.net/>
    [Programmers]: <https://programmers.co.kr/>
