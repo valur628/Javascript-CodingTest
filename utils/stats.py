@@ -2,16 +2,23 @@ from datetime import datetime
 import os
 
 def count_files(directory):
-    file_list = os.listdir(directory)
-    file_count = len(file_list)
-    return file_count
+    total_count = 0
+    subdirs_info = ""
+    for entry in os.scandir(directory):
+        if entry.is_file() and os.path.splitext(entry.name)[1] == '.js':
+            total_count += 1
+        elif entry.is_dir():
+            subdir_count = count_files(entry.path)
+            total_count += subdir_count
+            subdirs_info += f"    - [{entry.name}]: {subdir_count}개 해결\n"
+    return total_count, subdirs_info
 
 def update_readme(file_counts):
-    total_count = 0
     info = ""
-    for directory, count in file_counts.items():
-        info += f"- [{directory}]: {count}개 해결\n"
-        total_count += count
+    for directory, (count, subdirs_info) in file_counts.items():
+        info += f"- [{directory}]: {count}개 해결\n" + subdirs_info
+
+    total_count = sum(count for count, _ in file_counts.values())
 
     total_info = f"### 누적 기록\n#### 총 합계: {total_count}\n" + info
 
