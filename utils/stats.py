@@ -8,9 +8,9 @@ def count_files(directory):
         if entry.is_file() and os.path.splitext(entry.name)[1] == '.js':
             total_count += 1
         elif entry.is_dir():
-            subdir_count = count_files(entry.path)
+            subdir_count, subdir_info = count_files(entry.path)
             total_count += subdir_count
-            subdirs_info += f"    - [{entry.name}]: {subdir_count}개 해결\n"
+            subdirs_info += f"    - [{entry.name}]: {subdir_count}개 해결\n" + subdir_info
     return total_count, subdirs_info
 
 def update_readme(file_counts):
