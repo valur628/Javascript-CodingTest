@@ -4,7 +4,8 @@ import os
 def count_files(directory):
     total_count = 0
     subdirs_info = ""
-    for entry in os.scandir(directory):
+    entries = sorted(os.scandir(directory), key=lambda entry: entry.name)
+    for entry in entries:
         if entry.is_file() and os.path.splitext(entry.name)[1] == '.js':
             total_count += 1
         elif entry.is_dir():
